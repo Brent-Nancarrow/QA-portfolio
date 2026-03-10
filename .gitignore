@@ -33,3 +33,8 @@ coverage.xml
 # OS files
 .DS_Store
 Thumbs.db
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
