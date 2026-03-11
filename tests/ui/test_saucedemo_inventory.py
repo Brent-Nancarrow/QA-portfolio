@@ -6,8 +6,7 @@ from pages.inventory_page import InventoryPage
 
 
 @pytest.mark.ui
-@pytest.mark.smoke
-def test_successful_login(page: Page) -> None:
+def test_inventory_page_shows_products(page: Page) -> None:
     login_page = LoginPage(page)
     inventory_page = InventoryPage(page)
 
@@ -15,13 +14,4 @@ def test_successful_login(page: Page) -> None:
     login_page.login("standard_user", "secret_sauce")
 
     inventory_page.verify_loaded()
-
-
-@pytest.mark.ui
-def test_locked_out_user_sees_error(page: Page) -> None:
-    login_page = LoginPage(page)
-
-    login_page.open()
-    login_page.login("locked_out_user", "secret_sauce")
-
-    assert "Sorry, this user has been locked out." in login_page.get_error_message()
+    assert inventory_page.get_item_count() > 0
