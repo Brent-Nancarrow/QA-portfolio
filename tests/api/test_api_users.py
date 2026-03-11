@@ -1,4 +1,5 @@
 from playwright.sync_api import APIRequestContext
+from utils.api_helpers import assert_has_keys
 
 
 def test_get_users_returns_200(api_context: APIRequestContext):
@@ -19,9 +20,7 @@ def test_first_user_contains_expected_fields(api_context: APIRequestContext):
     users = response.json()
     first_user = users[0]
 
-    assert "id" in first_user
-    assert "name" in first_user
-    assert "email" in first_user
+    assert_has_keys(first_user, ["id", "name", "email"])
 
 
 def test_first_user_email_looks_valid(api_context: APIRequestContext):

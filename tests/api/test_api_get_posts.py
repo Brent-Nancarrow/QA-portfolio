@@ -1,4 +1,5 @@
 from playwright.sync_api import APIRequestContext
+from utils.api_helpers import assert_has_keys
 
 
 def test_get_all_posts_returns_200(api_context: APIRequestContext):
@@ -19,10 +20,7 @@ def test_first_post_contains_expected_fields(api_context: APIRequestContext):
     posts = response.json()
     first_post = posts[0]
 
-    assert "userId" in first_post
-    assert "id" in first_post
-    assert "title" in first_post
-    assert "body" in first_post
+    assert_has_keys(first_post, ["userId", "id", "title", "body"])
 
 
 def test_get_non_existent_post_returns_404(api_context: APIRequestContext):
