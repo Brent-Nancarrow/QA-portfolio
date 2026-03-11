@@ -1,4 +1,7 @@
+import pytest
 from playwright.sync_api import APIRequestContext
+
+pytestmark = pytest.mark.api
 
 
 def test_create_post_returns_expected_status_and_data(api_context: APIRequestContext):

@@ -1,5 +1,8 @@
+import pytest
 from playwright.sync_api import APIRequestContext
 from utils.api_helpers import assert_has_keys
+
+pytestmark = pytest.mark.api
 
 
 def test_get_all_posts_returns_200(api_context: APIRequestContext):

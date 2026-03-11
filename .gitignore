@@ -16,6 +16,7 @@ dist/
 
 # Test / coverage / reports
 .pytest_cache/
+*.pyc
 .coverage
 htmlcov/
 coverage.xml
