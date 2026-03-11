@@ -1,33 +1,35 @@
 # QA-portfolio
 
-A beginner-friendly but commercially credible QA automation portfolio project built with **Python, Playwright and pytest**.
+A beginner-friendly but commercially credible QA portfolio project built with **Python, Playwright and pytest**.
 
 This project is designed to demonstrate practical modern QA skills in a realistic and maintainable way, including:
 
 - **UI testing** against Sauce Demo
 - **API testing** against JSONPlaceholder
-- **Page Object structure** for cleaner UI test design
-- **Shared config and test data**
+- **Page Object Model (POM)** structure for cleaner UI test design
+- **Shared config and reusable test data**
 - **Responsive/mobile viewport coverage**
 - **Failure evidence** such as trace, video and screenshots on failure
 - **GitHub Actions CI** for automated test execution
+- **Selective test execution using pytest markers**
 
-The goal is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / Assurance-led QA professional** adding modern tooling.
+The goal is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
 
 ---
 
 ## What this project demonstrates
 
-This project currently covers:
+This project currently demonstrates:
 
 - UI smoke and functional checks using Playwright
-- API checks using pytest and requests
-- Separation of UI and API tests
-- Maintainable UI test structure using page objects
-- Reusable test data and shared settings
+- API checks using Playwright API request support with pytest
+- Separation of UI and API test coverage
+- Maintainable UI structure using page objects
+- Reusable helpers, shared settings and test data
 - Local headed execution and CI headless execution
 - Responsive testing using a mobile-style viewport
-- Basic GitHub Actions CI pipeline
+- GitHub Actions CI pipeline
+- Failure investigation support using trace, video and screenshots on failure
 
 ---
 
@@ -37,7 +39,6 @@ This project currently covers:
 - **PyCharm**
 - **pytest**
 - **Playwright**
-- **requests**
 - **Git / GitHub**
 - **GitHub Actions**
 
@@ -71,12 +72,16 @@ QA-portfolio/
 │   └── login_page.py
 ├── tests/
 │   ├── api/
-│   │   └── test_api_jsonplaceholder.py
+│   │   ├── test_api_create_post.py
+│   │   ├── test_api_get_posts.py
+│   │   └── test_api_users.py
 │   └── ui/
 │       ├── test_saucedemo_inventory.py
 │       ├── test_saucedemo_login.py
 │       ├── test_saucedemo_responsive.py
 │       └── test_saucedemo_smoke.py
+├── utils/
+│   └── api_helpers.py
 ├── conftest.py
 ├── pytest.ini
 ├── README.md
@@ -87,15 +92,16 @@ QA-portfolio/
 
 - **pages/** contains the page objects for UI tests
 - **data/** contains reusable test data such as demo users
-- **config/** contains shared settings such as the base URL
+- **config/** contains shared settings such as base URLs
 - **tests/ui/** contains Playwright-based UI tests
 - **tests/api/** contains API tests
+- **utils/** contains small reusable helper logic
 
 ---
 
 ## Why page objects were used
 
-Page objects were introduced to keep the tests cleaner and easier to maintain.
+Page objects were introduced to keep the UI tests cleaner and easier to maintain.
 
 In simple terms:
 
@@ -114,12 +120,19 @@ This avoids repeating the same locator details across multiple tests and makes t
 - successful login flow
 - locked out user validation
 - inventory page validation
+- add-to-cart cart badge validation
+- remove-from-cart cart badge validation
 - responsive/mobile viewport login page check
 
 ### API coverage
 
-- basic JSONPlaceholder endpoint checks
-- API coverage now includes GET and POST checks against JSONPlaceholder, including response status, payload validation, and basic response structure checks.
+- GET `/posts` checks
+- GET `/users` checks
+- POST `/posts` checks
+- response status validation
+- response body/content validation
+- basic response structure/key validation
+- negative API coverage for a non-existent post returning `404`
 
 ---
 
@@ -176,99 +189,91 @@ python -m playwright install
 pytest
 ```
 
-### Run UI tests
+### Run only UI tests
 
 ```bash
-pytest tests/ui -v
+pytest -m ui -v
 ```
 
-### Run API tests
+### Run only API tests
 
 ```bash
-pytest tests/api -v
+pytest -m api -v
 ```
 
-### Run smoke tests
+### Run only smoke tests
 
 ```bash
-pytest -m smoke
+pytest -m smoke -v
 ```
 
-### Run responsive tests
+### Run only responsive tests
 
 ```bash
-pytest -m responsive
+pytest -m responsive -v
 ```
 
 ---
 
-## Test execution behaviour
+## Local vs CI execution
 
-The project is set up so that:
+This project is configured so that:
 
-- **local runs** use a visible browser (**headed**) for easier learning and debugging
-- **CI runs** use **headless** mode for automated execution in GitHub Actions
+- **local runs** open the browser in headed mode for easier visibility
+- **CI runs** execute headless in GitHub Actions
 
-This is handled through project configuration rather than needing to change the tests manually each time.
+This is controlled in `conftest.py` using the `CI` environment variable.
 
 ---
 
 ## Failure evidence
 
-The framework is configured to capture useful failure evidence for debugging, including:
+The project is configured to retain useful evidence on failure, including:
 
-- trace
-- screenshot
-- video
+- **Playwright trace**
+- **video**
+- **screenshots**
 
-This helps make failures easier to understand and gives the project a more realistic QA workflow.
+This helps support investigation and debugging when a test fails.
 
 ---
 
 ## Continuous Integration
 
-This project includes a **GitHub Actions** workflow so tests can run automatically in CI.
+GitHub Actions is configured to run the test suite automatically on:
 
-This demonstrates:
+- push to `main`
+- pull requests
+- manual workflow dispatch
 
-- basic CI/CD awareness
-- automated validation outside the local machine
-- a more realistic portfolio workflow
+This helps demonstrate that the project can run both locally and in an automated pipeline.
 
 ---
 
-## Why this project exists
+## Why this project matters for my portfolio
 
-I built this project as part of my QA upskilling journey to strengthen practical exposure to modern tooling while staying aligned to my main career direction in:
+This repository is intended to show practical, honest capability in modern QA tooling without pretending to be an advanced automation specialist.
 
-- Senior Manual QA
-- Workstream Test Lead (hands-on)
-- Test Assurance / Delivery Assurance
-- Release confidence / embedded quality support
+It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** who is adding:
 
-The intention is to show practical capability with modern tools without pretending to be an automation-first SDET.
+- Python
+- Playwright
+- pytest
+- API coverage
+- CI awareness
+- maintainable test structure
+
+in a realistic and commercially grounded way.
 
 ---
 
 ## Future improvements
 
-Planned or possible future additions include:
+Potential future improvements include:
 
-- improved README polish
-- additional responsive coverage
-- simple helper layer expansion
-- more API scenarios
-- light data validation examples
-- Docker-based execution
-- improved test reporting (for example Allure) to provide clearer execution summaries, richer failure evidence and more stakeholder-friendly results
-- optional ReqRes API coverage
-- optional small BDD example later if useful
-
----
-
-## Notes
-
-This is a portfolio learning project using public demo systems and APIs.
-
-It is intentionally kept practical, readable and maintainable rather than over-engineered.
-
+- improved test reporting
+- richer README visuals or screenshots
+- Docker support
+- expanded API coverage
+- additional UI journeys
+- cleaner reusable helper layers where appropriat
