@@ -119,6 +119,7 @@ This avoids repeating the same locator details across multiple tests and makes t
 ### API coverage
 
 - basic JSONPlaceholder endpoint checks
+- API coverage now includes GET and POST checks against JSONPlaceholder, including response status, payload validation, and basic response structure checks.
 
 ---
 
