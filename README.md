@@ -276,4 +276,4 @@ Potential future improvements include:
 - Docker support
 - expanded API coverage
 - additional UI journeys
-- cleaner reusable helper layers where appropriat
+- cleaner reusable helper layers where appropriate
