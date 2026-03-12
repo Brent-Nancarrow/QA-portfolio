@@ -28,7 +28,6 @@ def test_adding_backpack_updates_cart_badge(page: Page) -> None:
 
     inventory_page.verify_loaded()
     inventory_page.add_backpack_to_cart()
-
     assert inventory_page.get_cart_badge_text() == "1"
 
 

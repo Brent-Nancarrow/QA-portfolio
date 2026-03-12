@@ -136,6 +136,22 @@ This avoids repeating the same locator details across multiple tests and makes t
 
 ---
 
+## Screenshots
+
+### Inventory page after successful login
+
+![Inventory page after login](assets/screenshots/inventory-page.png)
+
+### Cart badge updates after adding an item
+
+![Cart badge showing 1 item](assets/screenshots/cart-badge.png)
+
+### GitHub Actions CI run
+
+![GitHub Actions passing workflow](assets/screenshots/github-actions-pass.png)
+
+---
+
 ## Setup
 
 ### 1. Clone the repository
