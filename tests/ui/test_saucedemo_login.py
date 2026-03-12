@@ -7,22 +7,26 @@ from pages.login_page import LoginPage
 
 
 @pytest.mark.ui
-@pytest.mark.smoke
-def test_successful_login(page: Page) -> None:
+@pytest.mark.parametrize(
+    "user_data, should_login, expected_error",
+    [
+        (STANDARD_USER, True, None),
+        (LOCKED_OUT_USER, False, "Sorry, this user has been locked out."),
+    ],
+)
+def test_login_behaviour_by_user_type(
+    page: Page,
+    user_data: dict,
+    should_login: bool,
+    expected_error: str | None,
+) -> None:
     login_page = LoginPage(page)
     inventory_page = InventoryPage(page)
 
     login_page.open()
-    login_page.login_as_user(STANDARD_USER)
+    login_page.login_as_user(user_data)
 
-    inventory_page.verify_loaded()
-
-
-@pytest.mark.ui
-def test_locked_out_user_sees_error(page: Page) -> None:
-    login_page = LoginPage(page)
-
-    login_page.open()
-    login_page.login_as_user(LOCKED_OUT_USER)
-
-    assert "Sorry, this user has been locked out." in login_page.get_error_message()
+    if should_login:
+        inventory_page.verify_loaded()
+    else:
+        assert expected_error in login_page.get_error_message()
