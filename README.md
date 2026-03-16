@@ -2,7 +2,7 @@
 
 A beginner-friendly but commercially credible QA portfolio project built with **Python, Playwright and pytest**.
 
-This project is designed to demonstrate practical modern QA skills in a realistic and maintainable way, including:
+This repository is designed to demonstrate practical, modern QA capability in a realistic and maintainable way, including:
 
 - **UI testing** against Sauce Demo
 - **API testing** against JSONPlaceholder
@@ -10,10 +10,23 @@ This project is designed to demonstrate practical modern QA skills in a realisti
 - **Shared config and reusable test data**
 - **Responsive/mobile viewport coverage**
 - **Failure evidence** such as trace, video and screenshots on failure
+- **Allure reporting** for clearer stakeholder review of execution evidence
 - **GitHub Actions CI** for automated test execution
 - **Selective test execution using pytest markers**
 
 The goal is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
+
+---
+
+## At a glance
+
+- **Primary focus:** practical QA automation with commercially realistic scope
+- **UI target:** Sauce Demo
+- **API target:** JSONPlaceholder
+- **Test types shown:** UI, API, smoke, responsive/mobile and negative coverage
+- **Evidence shown:** Playwright trace/video/screenshots plus Allure reporting
+- **Execution modes:** headed locally, headless in CI
+- **Portfolio goal:** demonstrate maintainable test design and stakeholder-friendly evidence
 
 ---
 
@@ -30,6 +43,20 @@ This project currently demonstrates:
 - Responsive testing using a mobile-style viewport
 - GitHub Actions CI pipeline
 - Failure investigation support using trace, video and screenshots on failure
+
+---
+
+## Why this portfolio is useful
+
+Many public QA portfolios stop at simple pass/fail browser checks. This project is intended to go further by showing a balanced mix of:
+
+- practical UI and API coverage
+- maintainable project structure
+- failure investigation support
+- evidence that can be reviewed by stakeholders
+- commercially relevant tooling without over-engineering
+
+It is deliberately aimed at the kind of work I do and want to keep doing: **hands-on QA, test assurance, release confidence, and quality visibility**.
 
 ---
 
@@ -286,14 +313,13 @@ in a realistic and commercially grounded way.
 
 ## Future improvements
 
-Potential future improvements include:
+Planned future enhancements are intended to stay commercially useful and aligned to real QA / assurance work, not random complexity. The most likely next additions are:
 
-- improved test reporting
-- richer README visuals or screenshots
-- Docker support
-- expanded API coverage
-- additional UI journeys
-- cleaner reusable helper layers where appropriate
+- **BDD / Gherkin** for business-readable scenario coverage
+- **SQL-style data validation** checks
+- **dashboard / report validation** examples
+- **Docker support** for environment consistency
+- further stakeholder-facing evidence presentation where useful
 
 ## Allure reporting
 
@@ -332,3 +358,45 @@ allure open allure-report
 ```
 
 > Note: the Allure command-line tool also needs to be installed separately on your machine.
+
+### Why this matters in the portfolio
+
+Allure improves the visibility of:
+
+- what ran
+- what passed or failed
+- which steps were executed
+- what API evidence was captured
+- what UI evidence was attached on failure
+
+That makes the project more useful for interview discussion because it shows not just test execution, but also **evidence, traceability and reviewability**.
+
+### Recommended local review flow
+
+```bash
+pytest -m smoke --alluredir=allure-results
+allure serve allure-results
+```
+
+Then, for a fuller report:
+
+```bash
+pytest --alluredir=allure-results
+allure generate allure-results --clean -o allure-report
+allure open allure-report
+```
+
+---
+
+## How to talk about this project in interviews
+
+A simple and honest way to describe this portfolio is:
+
+> I built this project to demonstrate practical QA capability using Python, Playwright and pytest in a way that reflects my real background. It shows UI and API coverage, maintainable structure, CI execution, failure evidence and Allure reporting so execution results are easier to review.
+
+You could also highlight that it was designed to support conversations around:
+
+- modern tooling adoption as a hands-on QA lead / senior manual QA
+- stakeholder-friendly reporting and evidence
+- maintainability over automation for automation's sake
+- quality visibility and release confidence
