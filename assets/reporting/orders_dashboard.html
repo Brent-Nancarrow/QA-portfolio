@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders Dashboard Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 32px;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            margin-bottom: 8px;
+        }
+
+        .meta {
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-label {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .notes {
+            margin-top: 28px;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1 data-testid="dashboard-title">Orders Dashboard Summary</h1>
+        <div class="meta" data-testid="dashboard-meta">
+            Generated for: Portfolio demonstration |
+            Source: Local SQLite reporting dataset
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card" data-testid="card-total-orders">
+            <div class="card-label">Total orders</div>
+            <div class="card-value">8</div>
+        </div>
+
+        <div class="card" data-testid="card-completed-orders">
+            <div class="card-label">Completed orders</div>
+            <div class="card-value">4</div>
+        </div>
+
+        <div class="card" data-testid="card-pending-orders">
+            <div class="card-label">Pending orders</div>
+            <div class="card-value">2</div>
+        </div>
+
+        <div class="card" data-testid="card-cancelled-orders">
+            <div class="card-label">Cancelled orders</div>
+            <div class="card-value">2</div>
+        </div>
+
+        <div class="card" data-testid="card-completed-revenue">
+            <div class="card-label">Completed-order revenue</div>
+            <div class="card-value">730.49</div>
+        </div>
+    </div>
+
+    <div class="notes">
+        <h2>Validation purpose</h2>
+        <p>
+            This static dashboard mock is included to demonstrate a lightweight
+            stakeholder-facing reporting layer on top of the SQL-backed validation slice.
+        </p>
+        <p>
+            The related automated checks validate that the displayed values match
+            the underlying SQLite source data.
+        </p>
+    </div>
+</div>
+</body>
+</html>
