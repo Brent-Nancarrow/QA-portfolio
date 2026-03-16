@@ -43,6 +43,7 @@ This project currently demonstrates:
 - Responsive testing using a mobile-style viewport
 - GitHub Actions CI pipeline
 - Failure investigation support using trace, video and screenshots on failure
+- Allure-ready execution evidence for clearer review of test outcomes
 
 ---
 
@@ -66,6 +67,7 @@ It is deliberately aimed at the kind of work I do and want to keep doing: **hand
 - **PyCharm**
 - **pytest**
 - **Playwright**
+- **Allure**
 - **Git / GitHub**
 - **GitHub Actions**
 
@@ -108,8 +110,8 @@ QA-portfolio/
 │       ├── test_saucedemo_responsive.py
 │       └── test_saucedemo_smoke.py
 ├── utils/
+│   ├── allure_helpers.py
 │   └── api_helpers.py
-│   └── allure_helpers.py
 ├── conftest.py
 ├── pytest.ini
 ├── README.md
@@ -292,6 +294,17 @@ GitHub Actions is configured to run the test suite automatically on:
 
 This helps demonstrate that the project can run both locally and in an automated pipeline.
 
+### CI artifacts retained
+
+The workflow currently preserves two useful forms of execution evidence:
+
+- **Playwright test results** for failure investigation support
+- **Allure raw results** for report generation and execution review
+
+This means the CI pipeline is not just running tests — it is also keeping reviewable evidence that supports quality visibility.
+
+> Note: the workflow currently uploads **raw Allure results** rather than publishing a full hosted Allure dashboard.
+
 ---
 
 ## Why this project matters for my portfolio
@@ -306,8 +319,7 @@ It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assu
 - API coverage
 - CI awareness
 - maintainable test structure
-
-in a realistic and commercially grounded way.
+- stakeholder-friendly evidence presentation in a realistic and commercially grounded way.
 
 ---
 
@@ -320,6 +332,8 @@ Planned future enhancements are intended to stay commercially useful and aligned
 - **dashboard / report validation** examples
 - **Docker support** for environment consistency
 - further stakeholder-facing evidence presentation where useful
+
+---
 
 ## Allure reporting
 
@@ -370,6 +384,12 @@ Allure improves the visibility of:
 - what UI evidence was attached on failure
 
 That makes the project more useful for interview discussion because it shows not just test execution, but also **evidence, traceability and reviewability**.
+
+### Allure in CI
+
+GitHub Actions also stores **`allure-results/`** as a workflow artifact. This means the pipeline keeps the raw execution data needed to review or generate an Allure report after the run.
+
+This is a small but useful step toward stronger stakeholder-facing evidence in CI without overcomplicating the project.
 
 ### Recommended local review flow
 
