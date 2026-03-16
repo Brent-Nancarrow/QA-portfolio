@@ -82,6 +82,7 @@ QA-portfolio/
 │       └── test_saucedemo_smoke.py
 ├── utils/
 │   └── api_helpers.py
+│   └── allure_helpers.py
 ├── conftest.py
 ├── pytest.ini
 ├── README.md
@@ -293,3 +294,41 @@ Potential future improvements include:
 - expanded API coverage
 - additional UI journeys
 - cleaner reusable helper layers where appropriate
+
+## Allure reporting
+
+This project now includes **Allure-ready test reporting** to make execution results easier for stakeholders to review.
+
+### What Allure adds
+
+- clearer pass/fail execution status
+- named test titles and test steps
+- JSON request/response evidence for API checks
+- screenshot and page URL attachments for failed UI tests
+
+### Install the Allure pytest plugin
+
+```bash
+pip install allure-pytest
+```
+
+### Run tests and save Allure results
+
+```bash
+pytest --alluredir=allure-results
+```
+
+### Open a temporary Allure report
+
+```bash
+allure serve allure-results
+```
+
+### Generate a saved report folder
+
+```bash
+allure generate allure-results --clean -o allure-report
+allure open allure-report
+```
+
+> Note: the Allure command-line tool also needs to be installed separately on your machine.
