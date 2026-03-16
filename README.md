@@ -2,20 +2,21 @@
 
 A beginner-friendly but commercially credible QA portfolio project built with **Python, Playwright and pytest**.
 
-This repository is designed to demonstrate practical, modern QA capability in a realistic and maintainable way, including:
+It is designed to show practical, modern QA capability in a realistic and maintainable way, including:
 
 - **UI testing** against Sauce Demo
 - **API testing** against JSONPlaceholder
+- **SQL-backed data validation** using SQLite
+- **dashboard/report validation** using exported report data and a simple dashboard mock
 - **Page Object Model (POM)** structure for cleaner UI test design
-- **Shared config and reusable test data**
-- **Responsive/mobile viewport coverage**
-- **Failure evidence** such as trace, video and screenshots on failure
+- **shared config, reusable test data and helper utilities**
+- **responsive/mobile viewport coverage**
+- **failure evidence** such as trace, video and screenshots on failure
 - **Allure reporting** for clearer stakeholder review of execution evidence
 - **GitHub Actions CI** for automated test execution
-- **Selective test execution using pytest markers**
-- **SQL-backed data and dashboard validation** using SQLite
+- **selective test execution** using pytest markers
 
-The goal is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
+The aim is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
 
 ---
 
@@ -24,7 +25,8 @@ The goal is not to present as a senior automation engineer, but to show practica
 - **Primary focus:** practical QA automation with commercially realistic scope
 - **UI target:** Sauce Demo
 - **API target:** JSONPlaceholder
-- **Test types shown:** UI, API, smoke, responsive/mobile and negative coverage
+- **Data target:** local SQLite dataset for reporting-style validation
+- **Test types shown:** UI, API, smoke, responsive/mobile, negative and data/report validation
 - **Evidence shown:** Playwright trace/video/screenshots plus Allure reporting
 - **Execution modes:** headed locally, headless in CI
 - **Portfolio goal:** demonstrate maintainable test design and stakeholder-friendly evidence
@@ -37,7 +39,7 @@ This project currently demonstrates:
 
 - UI smoke and functional checks using Playwright
 - API checks using Playwright API request support with pytest
-- Separation of UI and API test coverage
+- Separation of UI, API and data/report validation coverage
 - Maintainable UI structure using page objects
 - Reusable helpers, shared settings and test data
 - Local headed execution and CI headless execution
@@ -45,16 +47,17 @@ This project currently demonstrates:
 - GitHub Actions CI pipeline
 - Failure investigation support using trace, video and screenshots on failure
 - Allure-ready execution evidence for clearer review of test outcomes
-- SQL-backed data quality and dashboard validation using SQLite
+- SQL-backed data quality and dashboard/report validation using SQLite
 
 ---
 
 ## Why this portfolio is useful
 
-Many public QA portfolios stop at simple pass/fail browser checks. This project is intended to go further by showing a balanced mix of:
+Many public QA portfolios stop at simple browser checks. This project is intended to go further by showing a balanced mix of:
 
 - practical UI and API coverage
 - maintainable project structure
+- data and reporting assurance
 - failure investigation support
 - evidence that can be reviewed by stakeholders
 - commercially relevant tooling without over-engineering
@@ -69,6 +72,7 @@ It is deliberately aimed at the kind of work I do and want to keep doing: **hand
 - **PyCharm**
 - **pytest**
 - **Playwright**
+- **SQLite**
 - **Allure**
 - **Git / GitHub**
 - **GitHub Actions**
@@ -94,11 +98,16 @@ QA-portfolio/
 ├── .github/
 │   └── workflows/
 │       └── playwright.yml
+├── assets/
+│   ├── reporting/
+│   │   └── orders_dashboard.html
+│   └── screenshots/
 ├── config/
 │   └── settings.py
 ├── data/
 │   ├── reporting/
 │   │   ├── dashboard_expected.json
+│   │   ├── dashboard_export.json
 │   │   ├── orders_schema.sql
 │   │   └── orders_seed.sql
 │   └── users.py
@@ -111,8 +120,10 @@ QA-portfolio/
 │   │   ├── test_api_get_posts.py
 │   │   └── test_api_users.py
 │   ├── data/
+│   │   ├── test_dashboard_export_validation.py
 │   │   └── test_orders_dashboard_sql.py
 │   └── ui/
+│       ├── test_reporting_dashboard_mock.py
 │       ├── test_saucedemo_inventory.py
 │       ├── test_saucedemo_login.py
 │       ├── test_saucedemo_responsive.py
@@ -120,6 +131,7 @@ QA-portfolio/
 ├── utils/
 │   ├── allure_helpers.py
 │   ├── api_helpers.py
+│   ├── report_helpers.py
 │   └── sql_helpers.py
 ├── conftest.py
 ├── pytest.ini
@@ -130,11 +142,12 @@ QA-portfolio/
 ### Structure notes
 
 - **pages/** contains the page objects for UI tests
-- **data/** contains reusable test data and SQL/reporting seed files
+- **data/** contains reusable test data plus SQL/reporting seed and export files
+- **assets/reporting/** contains a simple stakeholder-facing dashboard mock
 - **config/** contains shared settings such as base URLs
 - **tests/ui/** contains Playwright-based UI tests
 - **tests/api/** contains API tests
-- **tests/data/** contains SQL/data validation tests
+- **tests/data/** contains SQL/data/report validation tests
 - **utils/** contains small reusable helper logic
 
 ---
@@ -163,6 +176,7 @@ This avoids repeating the same locator details across multiple tests and makes t
 - add-to-cart cart badge validation
 - remove-from-cart cart badge validation
 - responsive/mobile viewport login page check
+- dashboard mock value display check
 
 ### API coverage
 
@@ -173,7 +187,17 @@ This avoids repeating the same locator details across multiple tests and makes t
 - response body/content validation
 - basic response structure/key validation
 - negative API coverage for a non-existent post returning `404`
-- SQL-backed data quality and dashboard validation against a local SQLite dataset
+
+### Data / dashboard coverage
+
+- SQL-backed total order validation against a local SQLite dataset
+- status breakdown validation
+- completed-order revenue validation
+- valid status checks
+- duplicate ID detection
+- negative amount detection
+- exported dashboard/report validation against SQL-derived results
+- dashboard metadata validation
 
 ---
 
@@ -276,6 +300,18 @@ pytest -m responsive -v
 pytest -m data -v
 ```
 
+### Run dashboard export validation directly
+
+```bash
+pytest tests/data/test_dashboard_export_validation.py -v
+```
+
+### Run the dashboard mock UI check directly
+
+```bash
+pytest tests/ui/test_reporting_dashboard_mock.py -v
+```
+
 ---
 
 ## Local vs CI execution
@@ -309,74 +345,43 @@ GitHub Actions is configured to run the test suite automatically on:
 - pull requests
 - manual workflow dispatch
 
-This helps demonstrate that the project can run both locally and in an automated pipeline.
-
-### CI artifacts retained
-
-The workflow currently preserves two useful forms of execution evidence:
+The workflow also retains:
 
 - **Playwright test results** for failure investigation support
 - **Allure raw results** for report generation and execution review
 
-This means the CI pipeline is not just running tests — it is also keeping reviewable evidence that supports quality visibility.
-
-> Note: the workflow currently uploads **raw Allure results** rather than publishing a full hosted Allure dashboard.
+This helps show that the project can run both locally and in an automated pipeline while keeping reviewable evidence.
 
 ---
 
-## Why this project matters for my portfolio
+## SQL / data / dashboard validation slice
 
-This repository is intended to show practical, honest capability in modern QA tooling without pretending to be an advanced automation specialist.
-
-It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** who is adding:
-
-- Python
-- Playwright
-- pytest
-- API coverage
-- CI awareness
-- maintainable test structure
-- stakeholder-friendly evidence presentation in a realistic and commercially grounded way.
-
----
-
-## SQL / data validation slice
-
-This portfolio now includes a lightweight **SQL-backed reporting validation slice** using **SQLite** and **pytest**.
+This portfolio includes a lightweight **SQL-backed reporting validation slice** using **SQLite** and **pytest**.
 
 It demonstrates:
 
 - validating source data using SQL queries
-- checking dashboard/report-style expected totals
-- confirming status breakdowns and completed-order revenue
+- checking dashboard/report-style totals and status breakdowns
+- validating completed-order revenue
 - basic data quality checks such as valid statuses, duplicate ID detection and negative amount detection
+- validating an exported dashboard/report JSON against SQL-derived results
+- checking a simple dashboard mock displays the expected figures
 - attaching SQL queries and result evidence into **Allure**
 
 This was added deliberately to reflect commercially realistic QA work beyond UI/API checks, especially where confidence in **reports, dashboards and business-critical outputs** matters.
 
 ---
 
-## Future improvements
-
-Planned future enhancements are intended to stay commercially useful and aligned to real QA / assurance work, not random complexity. The most likely next additions are:
-
-- **BDD / Gherkin** for business-readable scenario coverage
-- **deeper SQL/data validation** checks such as joins, filters and reconciliation logic
-- **dashboard / report validation** examples with richer presentation
-- **Docker support** for environment consistency
-- further stakeholder-facing evidence presentation where useful
-
----
-
 ## Allure reporting
 
-This project now includes **Allure-ready test reporting** to make execution results easier for stakeholders to review.
+This project includes **Allure-ready test reporting** to make execution results easier for stakeholders to review.
 
 ### What Allure adds
 
 - clearer pass/fail execution status
 - named test titles and test steps
 - JSON request/response evidence for API checks
+- SQL query/result evidence for data checks
 - screenshot and page URL attachments for failed UI tests
 
 ### Install the Allure pytest plugin
@@ -413,31 +418,29 @@ Allure improves the visibility of:
 - what ran
 - what passed or failed
 - which steps were executed
-- what API evidence was captured
+- what API or SQL evidence was captured
 - what UI evidence was attached on failure
 
 That makes the project more useful for interview discussion because it shows not just test execution, but also **evidence, traceability and reviewability**.
 
-### Allure in CI
+---
 
-GitHub Actions also stores **`allure-results/`** as a workflow artifact. This means the pipeline keeps the raw execution data needed to review or generate an Allure report after the run.
+## Why this project matters for my portfolio
 
-This is a small but useful step toward stronger stakeholder-facing evidence in CI without overcomplicating the project.
+This repository is intended to show practical, honest capability in modern QA tooling without pretending to be an advanced automation specialist.
 
-### Recommended local review flow
+It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** who is adding:
 
-```bash
-pytest -m smoke --alluredir=allure-results
-allure serve allure-results
-```
+- Python
+- Playwright
+- pytest
+- API coverage
+- SQL/data/report validation
+- CI awareness
+- maintainable test structure
+- stakeholder-friendly evidence presentation
 
-Then, for a fuller report:
-
-```bash
-pytest --alluredir=allure-results
-allure generate allure-results --clean -o allure-report
-allure open allure-report
-```
+in a realistic and commercially grounded way.
 
 ---
 
@@ -445,11 +448,11 @@ allure open allure-report
 
 A simple and honest way to describe this portfolio is:
 
-> I built this project to demonstrate practical QA capability using Python, Playwright and pytest in a way that reflects my real background. It shows UI and API coverage, maintainable structure, CI execution, failure evidence and Allure reporting so execution results are easier to review.
+> I built this project to demonstrate practical QA capability using Python, Playwright and pytest in a way that reflects my real background. It shows UI, API and SQL-backed data/report validation coverage, maintainable structure, CI execution, failure evidence and Allure reporting so execution results are easier to review.
 
-You could also highlight that it was designed to support conversations around:
+It also supports conversations around:
 
 - modern tooling adoption as a hands-on QA lead / senior manual QA
 - stakeholder-friendly reporting and evidence
-- maintainability over automation for automation's sake
+- maintainability over automation for automation’s sake
 - quality visibility and release confidence
