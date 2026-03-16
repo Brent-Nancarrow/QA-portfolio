@@ -13,6 +13,7 @@ This repository is designed to demonstrate practical, modern QA capability in a 
 - **Allure reporting** for clearer stakeholder review of execution evidence
 - **GitHub Actions CI** for automated test execution
 - **Selective test execution using pytest markers**
+- **SQL-backed data and dashboard validation** using SQLite
 
 The goal is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
 
@@ -44,6 +45,7 @@ This project currently demonstrates:
 - GitHub Actions CI pipeline
 - Failure investigation support using trace, video and screenshots on failure
 - Allure-ready execution evidence for clearer review of test outcomes
+- SQL-backed data quality and dashboard validation using SQLite
 
 ---
 
@@ -95,6 +97,10 @@ QA-portfolio/
 ├── config/
 │   └── settings.py
 ├── data/
+│   ├── reporting/
+│   │   ├── dashboard_expected.json
+│   │   ├── orders_schema.sql
+│   │   └── orders_seed.sql
 │   └── users.py
 ├── pages/
 │   ├── inventory_page.py
@@ -104,6 +110,8 @@ QA-portfolio/
 │   │   ├── test_api_create_post.py
 │   │   ├── test_api_get_posts.py
 │   │   └── test_api_users.py
+│   ├── data/
+│   │   └── test_orders_dashboard_sql.py
 │   └── ui/
 │       ├── test_saucedemo_inventory.py
 │       ├── test_saucedemo_login.py
@@ -111,7 +119,8 @@ QA-portfolio/
 │       └── test_saucedemo_smoke.py
 ├── utils/
 │   ├── allure_helpers.py
-│   └── api_helpers.py
+│   ├── api_helpers.py
+│   └── sql_helpers.py
 ├── conftest.py
 ├── pytest.ini
 ├── README.md
@@ -121,10 +130,11 @@ QA-portfolio/
 ### Structure notes
 
 - **pages/** contains the page objects for UI tests
-- **data/** contains reusable test data such as demo users
+- **data/** contains reusable test data and SQL/reporting seed files
 - **config/** contains shared settings such as base URLs
 - **tests/ui/** contains Playwright-based UI tests
 - **tests/api/** contains API tests
+- **tests/data/** contains SQL/data validation tests
 - **utils/** contains small reusable helper logic
 
 ---
@@ -163,6 +173,7 @@ This avoids repeating the same locator details across multiple tests and makes t
 - response body/content validation
 - basic response structure/key validation
 - negative API coverage for a non-existent post returning `404`
+- SQL-backed data quality and dashboard validation against a local SQLite dataset
 
 ---
 
@@ -259,6 +270,12 @@ pytest -m smoke -v
 pytest -m responsive -v
 ```
 
+### Run only SQL/data validation tests
+
+```bash
+pytest -m data -v
+```
+
 ---
 
 ## Local vs CI execution
@@ -323,13 +340,29 @@ It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assu
 
 ---
 
+## SQL / data validation slice
+
+This portfolio now includes a lightweight **SQL-backed reporting validation slice** using **SQLite** and **pytest**.
+
+It demonstrates:
+
+- validating source data using SQL queries
+- checking dashboard/report-style expected totals
+- confirming status breakdowns and completed-order revenue
+- basic data quality checks such as valid statuses, duplicate ID detection and negative amount detection
+- attaching SQL queries and result evidence into **Allure**
+
+This was added deliberately to reflect commercially realistic QA work beyond UI/API checks, especially where confidence in **reports, dashboards and business-critical outputs** matters.
+
+---
+
 ## Future improvements
 
 Planned future enhancements are intended to stay commercially useful and aligned to real QA / assurance work, not random complexity. The most likely next additions are:
 
 - **BDD / Gherkin** for business-readable scenario coverage
-- **SQL-style data validation** checks
-- **dashboard / report validation** examples
+- **deeper SQL/data validation** checks such as joins, filters and reconciliation logic
+- **dashboard / report validation** examples with richer presentation
 - **Docker support** for environment consistency
 - further stakeholder-facing evidence presentation where useful
 
