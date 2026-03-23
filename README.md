@@ -1,6 +1,6 @@
 # QA-portfolio
 
-A beginner-friendly but commercially credible QA portfolio project built with **Python, Playwright and pytest**.
+A beginner-friendly but commercially credible QA portfolio project built in **PyCharm** with **Python, Playwright and pytest**.
 
 It is designed to show practical, modern QA capability in a realistic and maintainable way, including:
 
@@ -15,18 +15,9 @@ It is designed to show practical, modern QA capability in a realistic and mainta
 - **Allure reporting** for clearer stakeholder review of execution evidence
 - **GitHub Actions CI** for automated test execution
 - **selective test execution** using pytest markers
+- **AI-assisted QA workflow documentation** showing how GenAI can support testing in a controlled, human-reviewed way
 
 The aim is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
-
----
-
-## AI-assisted QA workflow
-
-This portfolio also includes an **AI-assisted QA workflow pack** to show how Generative AI can be used in a practical, controlled and commercially realistic testing process.
-
-The emphasis is not on blindly trusting AI-generated output. The emphasis is on using AI to accelerate analysis, test idea generation, exploratory structure and defect communication, while keeping QA judgement, validation, evidence review and release confidence human-led.
-
-See: `docs/ai-assisted-qa-workflow/`
 
 ---
 
@@ -39,7 +30,7 @@ See: `docs/ai-assisted-qa-workflow/`
 - **Test types shown:** UI, API, smoke, responsive/mobile, negative and data/report validation
 - **Evidence shown:** Playwright trace/video/screenshots plus Allure reporting
 - **Execution modes:** headed locally, headless in CI
-- **Portfolio goal:** demonstrate maintainable test design and stakeholder-friendly evidence
+- **Portfolio goal:** demonstrate maintainable test design, evidence capture, and stakeholder-friendly QA thinking
 
 ---
 
@@ -49,15 +40,16 @@ This project currently demonstrates:
 
 - UI smoke and functional checks using Playwright
 - API checks using Playwright API request support with pytest
-- Separation of UI, API and data/report validation coverage
-- Maintainable UI structure using page objects
-- Reusable helpers, shared settings and test data
-- Local headed execution and CI headless execution
-- Responsive testing using a mobile-style viewport
+- separation of UI, API and data/report validation coverage
+- maintainable UI structure using page objects
+- reusable helpers, shared settings and test data
+- local headed execution and CI headless execution
+- responsive testing using a mobile-style viewport
 - GitHub Actions CI pipeline
-- Failure investigation support using trace, video and screenshots on failure
+- failure investigation support using trace, video and screenshots on failure
 - Allure-ready execution evidence for clearer review of test outcomes
 - SQL-backed data quality and dashboard/report validation using SQLite
+- AI-assisted QA workflow support that keeps testing judgement, review and release confidence human-led
 
 ---
 
@@ -71,8 +63,21 @@ Many public QA portfolios stop at simple browser checks. This project is intende
 - failure investigation support
 - evidence that can be reviewed by stakeholders
 - commercially relevant tooling without over-engineering
+- a realistic AI-assisted QA workflow rather than treating AI output as trusted by default
 
 It is deliberately aimed at the kind of work I do and want to keep doing: **hands-on QA, test assurance, release confidence, and quality visibility**.
+
+---
+
+## AI-assisted development approach
+
+This portfolio was developed using an **AI-assisted workflow** to help accelerate learning, structure ideas, and speed up parts of the implementation.
+
+AI support was used as an assistive tool rather than a substitute for QA judgement. The test scope, scenario selection, review, refinement, validation, and final portfolio decisions remained human-led.
+
+This was included deliberately because modern QA work is increasingly influenced by AI-assisted tooling. I wanted the portfolio to reflect a practical and commercially realistic approach: using AI to support the workflow while keeping evidence review, testing judgement, and release confidence human-owned.
+
+See also: `docs/ai-assisted-qa-workflow/`
 
 ---
 
@@ -121,6 +126,13 @@ QA-portfolio/
 │   │   ├── orders_schema.sql
 │   │   └── orders_seed.sql
 │   └── users.py
+├── docs/
+│   └── ai-assisted-qa-workflow/
+│       ├── README.md
+│       ├── ai-output-review-checklist.md
+│       ├── ai-test-design-prompt-pack.md
+│       ├── example-defect-investigation-workflow.md
+│       └── example-story-analysis.md
 ├── pages/
 │   ├── inventory_page.py
 │   └── login_page.py
@@ -154,6 +166,7 @@ QA-portfolio/
 - **pages/** contains the page objects for UI tests
 - **data/** contains reusable test data plus SQL/reporting seed and export files
 - **assets/reporting/** contains a simple stakeholder-facing dashboard mock
+- **docs/ai-assisted-qa-workflow/** contains the AI workflow pack showing how GenAI can support QA work in a controlled and review-led way
 - **config/** contains shared settings such as base URLs
 - **tests/ui/** contains Playwright-based UI tests
 - **tests/api/** contains API tests
@@ -208,6 +221,14 @@ This avoids repeating the same locator details across multiple tests and makes t
 - negative amount detection
 - exported dashboard/report validation against SQL-derived results
 - dashboard metadata validation
+
+### AI-assisted QA workflow coverage
+
+- example prompt patterns for AI-assisted test design
+- checklist for reviewing AI-generated output before trusting it
+- worked example of story-level analysis using AI as a starting point
+- worked example of defect investigation support with human-led evidence review
+- explicit demonstration that AI output is draft material, not trusted QA evidence
 
 ---
 
@@ -435,6 +456,49 @@ That makes the project more useful for interview discussion because it shows not
 
 ---
 
+## AI-assisted QA workflow pack
+
+This portfolio includes a small **AI-assisted QA workflow pack** under `docs/ai-assisted-qa-workflow/`.
+
+It is designed to show a practical, controlled and commercially realistic approach to using Generative AI in QA work.
+
+### What it includes
+
+- example prompts for test idea generation and exploratory support
+- a checklist for reviewing AI-generated output
+- story-analysis examples showing AI as a starting point, not an authority
+- defect-investigation examples showing where AI can assist communication without replacing evidence-led QA judgement
+
+### Why it matters
+
+The aim is not to claim that AI should replace testers. The aim is to show how AI can support:
+
+- faster test idea generation
+- exploratory structure
+- requirement gap analysis
+- defect communication drafting
+- workflow efficiency
+
+while keeping:
+
+- QA judgement
+- risk prioritisation
+- evidence review
+- validation
+- release confidence decisions human-led.
+
+---
+
+## Stakeholder-facing assurance artefacts
+
+This portfolio also includes a small **stakeholder assurance pack** to show how hands-on QA execution can be translated into release-readiness style outputs.
+
+The aim is to demonstrate not only test execution, but also quality communication, scope/risk visibility and evidence-led go/no-go style thinking.
+
+See: `docs/stakeholder-assurance-pack/`
+
+---
+
 ## Why this project matters for my portfolio
 
 This repository is intended to show practical, honest capability in modern QA tooling without pretending to be an advanced automation specialist.
@@ -449,6 +513,7 @@ It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assu
 - CI awareness
 - maintainable test structure
 - stakeholder-friendly evidence presentation
+- AI-assisted workflow support with human review and control
 
 in a realistic and commercially grounded way.
 
@@ -458,7 +523,7 @@ in a realistic and commercially grounded way.
 
 A simple and honest way to describe this portfolio is:
 
-> I built this project to demonstrate practical QA capability using Python, Playwright and pytest in a way that reflects my real background. It shows UI, API and SQL-backed data/report validation coverage, maintainable structure, CI execution, failure evidence and Allure reporting so execution results are easier to review.
+> I built this project to demonstrate practical QA capability using Python, Playwright and pytest in a way that reflects my real background. It shows UI, API and SQL-backed data/report validation coverage, maintainable structure, CI execution, failure evidence, Allure reporting, and an AI-assisted QA workflow pack that demonstrates how I would use Generative AI as a support tool rather than a substitute for testing judgement.
 
 It also supports conversations around:
 
@@ -466,3 +531,4 @@ It also supports conversations around:
 - stakeholder-friendly reporting and evidence
 - maintainability over automation for automation’s sake
 - quality visibility and release confidence
+- practical AI-assisted QA workflows with human-led review
