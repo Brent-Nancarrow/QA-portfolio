@@ -16,6 +16,7 @@ It is designed to show practical, modern QA capability in a realistic and mainta
 - **GitHub Actions CI** for automated test execution
 - **selective test execution** using pytest markers
 - **AI-assisted QA workflow documentation** showing how GenAI can support testing in a controlled, human-reviewed way
+- **traceability pack** showing requirement-to-test mapping and coverage/gap visibility
 
 The aim is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
 
@@ -127,12 +128,20 @@ QA-portfolio/
 │   │   └── orders_seed.sql
 │   └── users.py
 ├── docs/
-│   └── ai-assisted-qa-workflow/
+│   ├── ai-assisted-qa-workflow/
+│   │   ├── README.md
+│   │   ├── ai-output-review-checklist.md
+│   │   ├── ai-test-design-prompt-pack.md
+│   │   ├── example-defect-investigation-workflow.md
+│   │   └── example-story-analysis.md
+│   ├── stakeholder-assurance-pack/
+│   │   └── ...
+│   └── traceability-pack/
 │       ├── README.md
-│       ├── ai-output-review-checklist.md
-│       ├── ai-test-design-prompt-pack.md
-│       ├── example-defect-investigation-workflow.md
-│       └── example-story-analysis.md
+│       ├── sample-requirements-and-acceptance-criteria.md
+│       ├── requirements-to-test-matrix.md
+│       ├── requirements-to-test-matrix.csv
+│       └── coverage-and-gaps-summary.md
 ├── pages/
 │   ├── inventory_page.py
 │   └── login_page.py
@@ -167,6 +176,8 @@ QA-portfolio/
 - **data/** contains reusable test data plus SQL/reporting seed and export files
 - **assets/reporting/** contains a simple stakeholder-facing dashboard mock
 - **docs/ai-assisted-qa-workflow/** contains the AI workflow pack showing how GenAI can support QA work in a controlled and review-led way
+- **docs/stakeholder-assurance-pack/** contains stakeholder-facing release-readiness style artefacts
+- **docs/traceability-pack/** contains a lightweight requirement-to-test mapping pack
 - **config/** contains shared settings such as base URLs
 - **tests/ui/** contains Playwright-based UI tests
 - **tests/api/** contains API tests
@@ -229,6 +240,14 @@ This avoids repeating the same locator details across multiple tests and makes t
 - worked example of story-level analysis using AI as a starting point
 - worked example of defect investigation support with human-led evidence review
 - explicit demonstration that AI output is draft material, not trusted QA evidence
+
+### Traceability / requirement mapping coverage
+
+- lightweight sample requirements aligned to the existing portfolio tests
+- requirement-to-test mapping across UI, API and data/report validation
+- spreadsheet-friendly traceability matrix in CSV format
+- coverage and gap visibility to support stakeholder review
+- explicit linking of requirements, mapped tests and execution evidence sources
 
 ---
 
@@ -499,6 +518,23 @@ See: `docs/stakeholder-assurance-pack/`
 
 ---
 
+## Traceability / requirement-to-test mapping pack
+
+This portfolio also includes a lightweight **traceability pack** to show how requirements, acceptance criteria, tests and evidence can be linked together.
+
+The aim is to demonstrate requirement coverage thinking in a commercially realistic way, without over-claiming full enterprise traceability.
+
+It includes:
+
+- sample requirements and acceptance criteria
+- a readable requirement-to-test matrix
+- a CSV version for spreadsheet-style review
+- a short coverage and gaps summary
+
+See: `docs/traceability-pack/`
+
+---
+
 ## Why this project matters for my portfolio
 
 This repository is intended to show practical, honest capability in modern QA tooling without pretending to be an advanced automation specialist.
@@ -513,6 +549,7 @@ It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assu
 - CI awareness
 - maintainable test structure
 - stakeholder-friendly evidence presentation
+- traceability thinking linking requirements, tests and evidence
 - AI-assisted workflow support with human review and control
 
 in a realistic and commercially grounded way.
