@@ -20,6 +20,16 @@ The aim is not to present as a senior automation engineer, but to show practical
 
 ---
 
+## AI-assisted QA workflow
+
+This portfolio also includes an **AI-assisted QA workflow pack** to show how Generative AI can be used in a practical, controlled and commercially realistic testing process.
+
+The emphasis is not on blindly trusting AI-generated output. The emphasis is on using AI to accelerate analysis, test idea generation, exploratory structure and defect communication, while keeping QA judgement, validation, evidence review and release confidence human-led.
+
+See: `docs/ai-assisted-qa-workflow/`
+
+---
+
 ## At a glance
 
 - **Primary focus:** practical QA automation with commercially realistic scope
