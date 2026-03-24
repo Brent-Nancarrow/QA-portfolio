@@ -7,6 +7,15 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -60,19 +69,19 @@ jobs:
             {
               "name": "UI failures",
               "matchedStatuses": ["failed"],
-              "messageRegex": ".*(TimeoutError|locator|expect\\(|AssertionError).*",
+              "messageRegex": ".*(TimeoutError|locator|expect\(|AssertionError).*,?",
               "traceRegex": ".*tests/ui/.*"
             },
             {
               "name": "API failures",
               "matchedStatuses": ["failed"],
-              "messageRegex": ".*(AssertionError|status code|response).*",
+              "messageRegex": ".*(AssertionError|status code|response).*,?",
               "traceRegex": ".*tests/api/.*"
             },
             {
               "name": "Data and reporting failures",
               "matchedStatuses": ["failed"],
-              "messageRegex": ".*(AssertionError|SQL|query|dashboard|export).*",
+              "messageRegex": ".*(AssertionError|SQL|query|dashboard|export).*,?",
               "traceRegex": ".*tests/data/.*"
             }
           ]
@@ -93,3 +102,48 @@ jobs:
           name: allure-results
           path: allure-results/
           if-no-files-found: ignore
+
+  publish-allure-report:
+    if: always() && github.event_name != 'pull_request'
+    needs: test
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download Allure results artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
+
+      - name: Set up Java for Allure CLI
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Allure command line
+        run: |
+          curl -L -o allure.tgz https://github.com/allure-framework/allure2/releases/download/2.34.1/allure-2.34.1.tgz
+          tar -xzf allure.tgz
+          sudo mv allure-2.34.1 /opt/allure
+          echo "/opt/allure/bin" >> "$GITHUB_PATH"
+
+      - name: Generate Allure HTML report
+        run: |
+          allure generate allure-results --clean -o allure-report
+          touch allure-report/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: allure-report
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

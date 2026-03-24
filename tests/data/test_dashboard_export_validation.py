@@ -6,6 +6,7 @@ import pytest
 
 from utils.allure_helpers import attach_json, attach_text
 from utils.report_helpers import load_dashboard_export
+from utils.traceability import traceability
 from utils.sql_helpers import create_database_from_sql, fetch_one_value
 
 pytestmark = pytest.mark.data
@@ -36,6 +37,7 @@ def dashboard_export() -> dict:
     return load_dashboard_export(REPORTING_DIR / "dashboard_export.json")
 
 
+@traceability("RQ-DATA-003")
 @allure.feature("Dashboard Validation")
 @allure.story("Report export matches source data")
 @allure.title("Dashboard export totals match SQL query results")
@@ -43,6 +45,13 @@ def test_dashboard_export_totals_match_sql_results(
     orders_db: sqlite3.Connection,
     dashboard_export: dict,
 ) -> None:
+    with allure.step("Record the linked requirement for this dashboard export validation"):
+        allure.attach(
+            "Requirement: RQ-DATA-003 - Dashboard export validation",
+            name="traceability-reference",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+
     queries = {
         "total_orders": "SELECT COUNT(*) FROM orders;",
         "completed_orders": "SELECT COUNT(*) FROM orders WHERE order_status = 'Completed';",
@@ -79,10 +88,18 @@ def test_dashboard_export_totals_match_sql_results(
         assert dashboard_export["metrics"] == actual_results
 
 
+@traceability("RQ-DATA-003")
 @allure.feature("Dashboard Validation")
 @allure.story("Report export structure")
 @allure.title("Dashboard export contains the expected business metadata")
 def test_dashboard_export_contains_expected_metadata(dashboard_export: dict) -> None:
+    with allure.step("Record the linked requirement for this dashboard metadata validation"):
+        allure.attach(
+            "Requirement: RQ-DATA-003 - Dashboard export validation",
+            name="traceability-reference",
+            attachment_type=allure.attachment_type.TEXT,
+        )
+
     with allure.step("Attach the dashboard export content"):
         attach_json("dashboard-export-json", dashboard_export)
 

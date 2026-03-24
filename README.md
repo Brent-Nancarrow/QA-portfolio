@@ -106,7 +106,7 @@ If you are reviewing this repository for interview or hiring purposes, these are
 - **`docs/stakeholder-assurance-pack/`** → stakeholder-facing assurance artefacts
 - **`docs/traceability-pack/`** → requirement-to-test mapping and coverage visibility
 - **`docs/ai-assisted-qa-workflow/`** → practical AI-assisted QA workflow examples
-- **`allure-results/` / `allure-report/`** → richer execution evidence and report output
+- **GitHub Actions + GitHub Pages** → CI execution evidence and published Allure report output
 
 ---
 
@@ -180,6 +180,8 @@ QA-portfolio/
 - **tests/api/** contains API tests
 - **tests/data/** contains SQL/data/report validation tests
 - **utils/** contains small reusable helper logic
+- **allure-results/** contains raw Allure execution output plus small tracked metadata files
+- **allure-report/** is a generated HTML report folder created locally or in CI and can also be published through GitHub Pages
 
 ---
 
@@ -399,6 +401,7 @@ The workflow also retains:
 
 - **Playwright test results** for failure investigation support
 - **Allure raw results** for report generation and execution review
+- **a published Allure HTML report in GitHub Pages** for easier stakeholder-style access
 
 This helps show that the project can run both locally and in an automated pipeline while keeping reviewable evidence.
 
@@ -460,7 +463,19 @@ allure generate allure-results --clean -o allure-report
 allure open allure-report
 ```
 
-> Note: the Allure command-line tool also needs to be installed separately on your machine.
+### View the published CI report
+
+After a successful GitHub Actions run, this project can also publish the generated Allure HTML report to **GitHub Pages**.
+
+That gives a more stakeholder-friendly way to review execution output without needing to regenerate the report locally every time.
+
+Typical published URL pattern:
+
+```text
+https://<github-username>.github.io/QA-portfolio/
+```
+
+> Note: the Allure command-line tool also needs to be installed separately on your machine for local report generation.
 
 ### Why this matters in the portfolio
 
@@ -473,7 +488,7 @@ Allure improves the visibility of:
 - what UI evidence was attached on failure
 - which environment and execution context produced the result
 
-That makes the project more useful for interview discussion because it shows not just test execution, but also **evidence, traceability and reviewability**.
+That makes the project more useful for interview discussion because it shows not just test execution, but also **evidence, traceability, reviewability and stakeholder-friendly report access**.
 
 ---
 
