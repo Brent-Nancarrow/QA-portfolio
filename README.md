@@ -1,6 +1,6 @@
 # QA-portfolio
 
-A **beginner-friendly but commercially credible QA portfolio** built in **PyCharm** using **Python, Playwright and pytest**.
+A **commercially credible QA portfolio** demonstrating practical **UI, API, SQL/data and dashboard validation** built in **PyCharm** using **Python, Playwright, pytest, SQLite, Allure and GitHub Actions**.
 
 This repository is designed to show more than isolated browser checks. It demonstrates how I apply **hands-on testing, test assurance, risk-based thinking, stakeholder visibility and release-readiness judgement** in a practical way, while building confidence with modern tooling.
 
@@ -41,6 +41,7 @@ That combination is closer to the real value I bring in delivery environments: *
 - **Evidence shown:** Playwright trace/video/screenshots plus Allure reporting
 - **Execution modes:** headed locally, headless in CI
 - **Portfolio goal:** demonstrate maintainable test design, assurance thinking, evidence capture and stakeholder-friendly QA communication
+- **Published execution report:** [GitHub Pages-hosted Allure report](https://brent-nancarrow.github.io/QA-portfolio/)
 
 ---
 
@@ -560,19 +561,16 @@ See: `docs/traceability-pack/`
 
 ## Why this project matters for my portfolio
 
-This repository is intended to show practical, honest capability in modern QA tooling without pretending to be an advanced automation specialist.
+This repository is intended to show practical, honest capability in modern QA tooling while staying aligned to my real market positioning.
 
-It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** who brings value through:
+It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** who adds value through:
 
-- hands-on QA execution where it matters
-- test assurance and release confidence thinking
-- stakeholder reporting and quality visibility
-- risk-based coverage decisions
-- data and reporting validation, not just browser checks
-- maintainable structure over automation for automation’s sake
-- AI-assisted workflow support with human review and control
-
----
+- **hands-on testing where it matters**
+- **test assurance and release confidence thinking**
+- **stakeholder reporting and quality visibility**
+- **risk-based coverage decisions**
+- **data / dashboard validation**, not just browser checks
+- **AI-assisted but human-controlled workflow support**
 
 ## How to talk about this project in interviews
 
