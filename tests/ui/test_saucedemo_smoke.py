@@ -3,8 +3,10 @@ import pytest
 from playwright.sync_api import Page, expect
 
 from pages.login_page import LoginPage
+from utils.traceability import traceability
 
 
+@traceability("RQ-UI-001")
 @allure.feature("Sauce Demo UI")
 @allure.story("Smoke")
 @allure.title("Login page loads and shows core controls")
@@ -12,6 +14,13 @@ from pages.login_page import LoginPage
 @pytest.mark.smoke
 def test_saucedemo_login_page_loads(page: Page) -> None:
     login_page = LoginPage(page)
+
+    with allure.step("Record the linked requirement for this smoke check"):
+        allure.attach(
+            "Requirement: RQ-UI-001 - Login page availability",
+            name="traceability-reference",
+            attachment_type=allure.attachment_type.TEXT,
+        )
 
     with allure.step("Open the Sauce Demo login page"):
         login_page.open()

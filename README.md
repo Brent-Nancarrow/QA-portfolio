@@ -16,7 +16,7 @@ It is designed to show practical, modern QA capability in a realistic and mainta
 - **GitHub Actions CI** for automated test execution
 - **selective test execution** using pytest markers
 - **AI-assisted QA workflow documentation** showing how GenAI can support testing in a controlled, human-reviewed way
-- **traceability pack** showing requirement-to-test mapping and coverage/gap visibility
+- **traceability pack** showing requirement-to-test mapping, light code-level tags and coverage/gap visibility
 
 The aim is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
 
@@ -141,7 +141,8 @@ QA-portfolio/
 │       ├── sample-requirements-and-acceptance-criteria.md
 │       ├── requirements-to-test-matrix.md
 │       ├── requirements-to-test-matrix.csv
-│       └── coverage-and-gaps-summary.md
+│       ├── coverage-and-gaps-summary.md
+│       └── stakeholder-coverage-summary.md
 ├── pages/
 │   ├── inventory_page.py
 │   └── login_page.py
@@ -248,6 +249,8 @@ This avoids repeating the same locator details across multiple tests and makes t
 - spreadsheet-friendly traceability matrix in CSV format
 - coverage and gap visibility to support stakeholder review
 - explicit linking of requirements, mapped tests and execution evidence sources
+- light code-level requirement tags in selected representative tests
+- stakeholder-facing coverage interpretation linked back to the matrix
 
 ---
 
@@ -530,8 +533,12 @@ It includes:
 - a readable requirement-to-test matrix
 - a CSV version for spreadsheet-style review
 - a short coverage and gaps summary
+- a stakeholder-facing coverage summary linked back to the matrix
+- light code-level requirement tags in selected representative tests
 
 See: `docs/traceability-pack/`
+
+Selected tests also use a small `utils/traceability.py` helper so requirement IDs can be reflected in code and Allure output without over-engineering the project.
 
 ---
 

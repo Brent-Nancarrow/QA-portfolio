@@ -5,6 +5,7 @@ import allure
 import pytest
 
 from utils.allure_helpers import attach_json, attach_text
+from utils.traceability import traceability
 from utils.sql_helpers import (
     create_database_from_sql,
     fetch_all_rows,
@@ -40,6 +41,7 @@ def expected_dashboard_values() -> dict:
     return load_expected_dashboard_values(REPORTING_DIR / "dashboard_expected.json")
 
 
+@traceability("RQ-DATA-001")
 @allure.feature("Data Validation")
 @allure.story("SQL-backed dashboard validation")
 @allure.title("Orders table contains the expected number of records")
@@ -48,6 +50,13 @@ def test_total_orders_matches_expected_dashboard_value(
     expected_dashboard_values: dict,
 ) -> None:
     query = "SELECT COUNT(*) FROM orders;"
+
+    with allure.step("Record the linked requirement for this dashboard total check"):
+        allure.attach(
+            "Requirement: RQ-DATA-001 - Dashboard totals align with source data",
+            name="traceability-reference",
+            attachment_type=allure.attachment_type.TEXT,
+        )
 
     with allure.step("Run SQL query to count all orders"):
         actual_total_orders = fetch_one_value(orders_db, query)

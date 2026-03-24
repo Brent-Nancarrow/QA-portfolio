@@ -38,6 +38,9 @@ This pack is included to support my positioning as a **hands-on QA / Workstream 
 - `coverage-and-gaps-summary.md`  
   A stakeholder-friendly summary of what is covered, partially covered and not covered
 
+- `stakeholder-coverage-summary.md`  
+  A short stakeholder-facing interpretation linked back to the matrix
+
 ## Portfolio relevance
 
 This pack deliberately complements the existing:
@@ -48,3 +51,10 @@ This pack deliberately complements the existing:
 - AI-assisted but human-led QA workflow pack
 
 Together, those pieces show not only how tests were written and run, but also how coverage can be explained and defended.
+
+
+## Lightweight code-level traceability
+
+A small number of representative tests also include lightweight requirement tags in code via `utils/traceability.py`.
+
+This is intentionally selective. The goal is to show how requirement IDs can be reflected in automated checks without turning the portfolio into a heavy framework exercise.
