@@ -1,0 +1,20 @@
+[
+  {
+    "name": "UI failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*(TimeoutError|locator|expect\\(|AssertionError).*",
+    "traceRegex": ".*tests/ui/.*"
+  },
+  {
+    "name": "API failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*(AssertionError|status code|response).*",
+    "traceRegex": ".*tests/api/.*"
+  },
+  {
+    "name": "Data and reporting failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*(AssertionError|SQL|query|dashboard|export).*",
+    "traceRegex": ".*tests/data/.*"
+  }
+]

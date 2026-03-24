@@ -1,0 +1,8 @@
+{
+  "name": "GitHub Actions",
+  "type": "github",
+  "buildName": "QA-portfolio Playwright Python Tests",
+  "reportName": "QA-portfolio Allure Report",
+  "buildUrl": "https://github.com/Brent-Nancarrow/QA-portfolio/actions",
+  "reportUrl": "https://github.com/Brent-Nancarrow/QA-portfolio/actions"
+}

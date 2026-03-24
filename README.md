@@ -1,24 +1,33 @@
 # QA-portfolio
 
-A beginner-friendly but commercially credible QA portfolio project built in **PyCharm** with **Python, Playwright and pytest**.
+A **beginner-friendly but commercially credible QA portfolio** built in **PyCharm** using **Python, Playwright and pytest**.
 
-It is designed to show practical, modern QA capability in a realistic and maintainable way, including:
+This repository is designed to show more than isolated browser checks. It demonstrates how I apply **hands-on testing, test assurance, risk-based thinking, stakeholder visibility and release-readiness judgement** in a practical way, while building confidence with modern tooling.
 
-- **UI testing** against Sauce Demo
-- **API testing** against JSONPlaceholder
-- **SQL-backed data validation** using SQLite
-- **dashboard/report validation** using exported report data and a simple dashboard mock
-- **Page Object Model (POM)** structure for cleaner UI test design
-- **shared config, reusable test data and helper utilities**
-- **responsive/mobile viewport coverage**
-- **failure evidence** such as trace, video and screenshots on failure
-- **Allure reporting** for clearer stakeholder review of execution evidence
-- **GitHub Actions CI** for automated test execution
-- **selective test execution** using pytest markers
-- **AI-assisted QA workflow documentation** showing how GenAI can support testing in a controlled, human-reviewed way
-- **traceability pack** showing requirement-to-test mapping, light code-level tags and coverage/gap visibility
+It is intentionally positioned for the kind of work I do and want to keep doing:
 
-The aim is not to present as a senior automation engineer, but to show practical hands-on capability as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** adding modern tooling in a commercially realistic way.
+- **Senior Manual QA**
+- **Workstream Test Lead (hands-on)**
+- **Test Assurance / Release Readiness**
+- **Quality visibility and stakeholder-facing reporting**
+
+The aim is **not** to present as a senior SDET or framework specialist. The aim is to show a realistic portfolio for an assurance-led QA professional adding modern tooling in a commercially grounded way.
+
+---
+
+## What value this portfolio is intended to demonstrate
+
+This project is meant to show that I can contribute value across more than one QA layer:
+
+- **hands-on functional testing** across UI and API layers
+- **risk-based coverage** focused on meaningful user, data and reporting risks
+- **data / dashboard validation** rather than UI-only automation
+- **failure evidence and reviewability** through screenshots, trace, video and Allure attachments
+- **traceability thinking** linking requirements, tests and evidence
+- **stakeholder-facing assurance outputs** rather than raw execution alone
+- **AI-assisted but human-controlled QA workflow** with review, judgement and validation kept human-led
+
+That combination is closer to the real value I bring in delivery environments: **test assurance, stakeholder reporting, quality visibility and release confidence**, while still being comfortable doing the testing work itself.
 
 ---
 
@@ -31,67 +40,73 @@ The aim is not to present as a senior automation engineer, but to show practical
 - **Test types shown:** UI, API, smoke, responsive/mobile, negative and data/report validation
 - **Evidence shown:** Playwright trace/video/screenshots plus Allure reporting
 - **Execution modes:** headed locally, headless in CI
-- **Portfolio goal:** demonstrate maintainable test design, evidence capture, and stakeholder-friendly QA thinking
+- **Portfolio goal:** demonstrate maintainable test design, assurance thinking, evidence capture and stakeholder-friendly QA communication
+
+---
+
+## Tech stack and versions
+
+The key runtime and framework versions are listed below so the portfolio is easier to reproduce and assess.
+
+| Component | Version / note |
+|---|---|
+| Python | **3.13** (GitHub Actions workflow) |
+| Playwright | **1.58.0** |
+| pytest | **9.0.2** |
+| pytest-playwright | **0.7.2** |
+| allure-pytest | **2.15.3** |
+| SQLite | used for local SQL-backed validation |
+| IDE | developed locally in **PyCharm** on **Windows 11** |
+| CI | **GitHub Actions** |
+
+> I have included versions for the main runtime and test frameworks because they are useful for reproducibility. I have not tried to version every possible local tool, because that would add noise rather than value.
 
 ---
 
 ## What this project demonstrates
 
-This project currently demonstrates:
-
+### Testing capability
 - UI smoke and functional checks using Playwright
-- API checks using Playwright API request support with pytest
-- separation of UI, API and data/report validation coverage
-- maintainable UI structure using page objects
-- reusable helpers, shared settings and test data
-- local headed execution and CI headless execution
-- responsive testing using a mobile-style viewport
-- GitHub Actions CI pipeline
-- failure investigation support using trace, video and screenshots on failure
-- Allure-ready execution evidence for clearer review of test outcomes
-- SQL-backed data quality and dashboard/report validation using SQLite
-- AI-assisted QA workflow support that keeps testing judgement, review and release confidence human-led
+- API validation using Playwright API request support with pytest
+- SQL-backed data quality and report validation using SQLite
+- responsive/mobile viewport coverage
+- negative-path coverage in both API and data validation
+
+### Test design and maintainability
+- Page Object Model structure for cleaner UI tests
+- shared config, reusable test data and helper utilities
+- selective execution using pytest markers
+- local vs CI execution handled in a practical way
+
+### Evidence and reporting
+- Playwright trace, screenshots and video on failure
+- Allure titles, steps and attachments for reviewable execution evidence
+- CI artifact retention in GitHub Actions
+- documentation that explains how tests, evidence and assurance outputs fit together
+
+### Assurance and stakeholder value
+- stakeholder-facing assurance artefacts
+- traceability from requirement to test and evidence
+- coverage and gaps visibility rather than pretending everything is covered
+- release-readiness style communication and confidence statements
+
+### Modern workflow awareness
+- AI-assisted QA workflow pack showing controlled, review-led use of GenAI
+- explicit positioning that AI is used to **support** QA, not replace evidence-led judgement
 
 ---
 
-## Why this portfolio is useful
+## Quick portfolio navigation
 
-Many public QA portfolios stop at simple browser checks. This project is intended to go further by showing a balanced mix of:
+If you are reviewing this repository for interview or hiring purposes, these are the most useful places to start:
 
-- practical UI and API coverage
-- maintainable project structure
-- data and reporting assurance
-- failure investigation support
-- evidence that can be reviewed by stakeholders
-- commercially relevant tooling without over-engineering
-- a realistic AI-assisted QA workflow rather than treating AI output as trusted by default
-
-It is deliberately aimed at the kind of work I do and want to keep doing: **hands-on QA, test assurance, release confidence, and quality visibility**.
-
----
-
-## AI-assisted development approach
-
-This portfolio was developed using an **AI-assisted workflow** to help accelerate learning, structure ideas, and speed up parts of the implementation.
-
-AI support was used as an assistive tool rather than a substitute for QA judgement. The test scope, scenario selection, review, refinement, validation, and final portfolio decisions remained human-led.
-
-This was included deliberately because modern QA work is increasingly influenced by AI-assisted tooling. I wanted the portfolio to reflect a practical and commercially realistic approach: using AI to support the workflow while keeping evidence review, testing judgement, and release confidence human-owned.
-
-See also: `docs/ai-assisted-qa-workflow/`
-
----
-
-## Tech stack
-
-- **Python**
-- **PyCharm**
-- **pytest**
-- **Playwright**
-- **SQLite**
-- **Allure**
-- **Git / GitHub**
-- **GitHub Actions**
+- **`tests/ui/`** → browser-based UI coverage
+- **`tests/api/`** → API validation examples
+- **`tests/data/`** → SQL-backed reporting and dashboard validation
+- **`docs/stakeholder-assurance-pack/`** → stakeholder-facing assurance artefacts
+- **`docs/traceability-pack/`** → requirement-to-test mapping and coverage visibility
+- **`docs/ai-assisted-qa-workflow/`** → practical AI-assisted QA workflow examples
+- **`allure-results/` / `allure-report/`** → richer execution evidence and report output
 
 ---
 
@@ -129,42 +144,23 @@ QA-portfolio/
 │   └── users.py
 ├── docs/
 │   ├── ai-assisted-qa-workflow/
-│   │   ├── README.md
-│   │   ├── ai-output-review-checklist.md
-│   │   ├── ai-test-design-prompt-pack.md
-│   │   ├── example-defect-investigation-workflow.md
-│   │   └── example-story-analysis.md
 │   ├── stakeholder-assurance-pack/
-│   │   └── ...
 │   └── traceability-pack/
-│       ├── README.md
-│       ├── sample-requirements-and-acceptance-criteria.md
-│       ├── requirements-to-test-matrix.md
-│       ├── requirements-to-test-matrix.csv
-│       ├── coverage-and-gaps-summary.md
-│       └── stakeholder-coverage-summary.md
 ├── pages/
 │   ├── inventory_page.py
 │   └── login_page.py
 ├── tests/
 │   ├── api/
-│   │   ├── test_api_create_post.py
-│   │   ├── test_api_get_posts.py
-│   │   └── test_api_users.py
 │   ├── data/
-│   │   ├── test_dashboard_export_validation.py
-│   │   └── test_orders_dashboard_sql.py
 │   └── ui/
-│       ├── test_reporting_dashboard_mock.py
-│       ├── test_saucedemo_inventory.py
-│       ├── test_saucedemo_login.py
-│       ├── test_saucedemo_responsive.py
-│       └── test_saucedemo_smoke.py
 ├── utils/
 │   ├── allure_helpers.py
 │   ├── api_helpers.py
 │   ├── report_helpers.py
-│   └── sql_helpers.py
+│   ├── sql_helpers.py
+│   └── traceability.py
+├── allure-results/
+├── allure-report/
 ├── conftest.py
 ├── pytest.ini
 ├── README.md
@@ -176,7 +172,7 @@ QA-portfolio/
 - **pages/** contains the page objects for UI tests
 - **data/** contains reusable test data plus SQL/reporting seed and export files
 - **assets/reporting/** contains a simple stakeholder-facing dashboard mock
-- **docs/ai-assisted-qa-workflow/** contains the AI workflow pack showing how GenAI can support QA work in a controlled and review-led way
+- **docs/ai-assisted-qa-workflow/** contains the AI workflow pack showing how GenAI can support QA work in a controlled, review-led way
 - **docs/stakeholder-assurance-pack/** contains stakeholder-facing release-readiness style artefacts
 - **docs/traceability-pack/** contains a lightweight requirement-to-test mapping pack
 - **config/** contains shared settings such as base URLs
@@ -200,13 +196,12 @@ This avoids repeating the same locator details across multiple tests and makes t
 
 ---
 
-## Test coverage included so far
+## Test coverage included
 
 ### UI coverage
-
 - login page smoke checks
 - successful login flow
-- locked out user validation
+- locked-out user validation
 - inventory page validation
 - add-to-cart cart badge validation
 - remove-from-cart cart badge validation
@@ -214,7 +209,6 @@ This avoids repeating the same locator details across multiple tests and makes t
 - dashboard mock value display check
 
 ### API coverage
-
 - GET `/posts` checks
 - GET `/users` checks
 - POST `/posts` checks
@@ -224,7 +218,6 @@ This avoids repeating the same locator details across multiple tests and makes t
 - negative API coverage for a non-existent post returning `404`
 
 ### Data / dashboard coverage
-
 - SQL-backed total order validation against a local SQLite dataset
 - status breakdown validation
 - completed-order revenue validation
@@ -234,8 +227,14 @@ This avoids repeating the same locator details across multiple tests and makes t
 - exported dashboard/report validation against SQL-derived results
 - dashboard metadata validation
 
-### AI-assisted QA workflow coverage
+### Stakeholder / assurance coverage
+- release-readiness summary
+- test scope and key risk summary
+- defect-priority summary
+- go / no-go style recommendation
+- stakeholder-facing coverage summary linked to traceability
 
+### AI-assisted QA workflow coverage
 - example prompt patterns for AI-assisted test design
 - checklist for reviewing AI-generated output before trusting it
 - worked example of story-level analysis using AI as a starting point
@@ -243,14 +242,12 @@ This avoids repeating the same locator details across multiple tests and makes t
 - explicit demonstration that AI output is draft material, not trusted QA evidence
 
 ### Traceability / requirement mapping coverage
-
 - lightweight sample requirements aligned to the existing portfolio tests
 - requirement-to-test mapping across UI, API and data/report validation
 - spreadsheet-friendly traceability matrix in CSV format
 - coverage and gap visibility to support stakeholder review
 - explicit linking of requirements, mapped tests and execution evidence sources
 - light code-level requirement tags in selected representative tests
-- stakeholder-facing coverage interpretation linked back to the matrix
 
 ---
 
@@ -436,6 +433,7 @@ This project includes **Allure-ready test reporting** to make execution results 
 - JSON request/response evidence for API checks
 - SQL query/result evidence for data checks
 - screenshot and page URL attachments for failed UI tests
+- optional report metadata such as environment, execution source and defect categories
 
 ### Install the Allure pytest plugin
 
@@ -473,6 +471,7 @@ Allure improves the visibility of:
 - which steps were executed
 - what API or SQL evidence was captured
 - what UI evidence was attached on failure
+- which environment and execution context produced the result
 
 That makes the project more useful for interview discussion because it shows not just test execution, but also **evidence, traceability and reviewability**.
 
@@ -507,15 +506,17 @@ while keeping:
 - risk prioritisation
 - evidence review
 - validation
-- release confidence decisions human-led.
+- release confidence decisions human-led
+
+See: `docs/ai-assisted-qa-workflow/`
 
 ---
 
 ## Stakeholder-facing assurance artefacts
 
-This portfolio also includes a small **stakeholder assurance pack** to show how hands-on QA execution can be translated into release-readiness style outputs.
+This portfolio includes a small **stakeholder assurance pack** to show how hands-on QA execution can be translated into release-readiness style outputs.
 
-The aim is to demonstrate not only test execution, but also quality communication, scope/risk visibility and evidence-led go/no-go style thinking.
+The aim is to demonstrate not only test execution, but also quality communication, scope/risk visibility and evidence-led go / no-go style thinking.
 
 See: `docs/stakeholder-assurance-pack/`
 
@@ -536,9 +537,9 @@ It includes:
 - a stakeholder-facing coverage summary linked back to the matrix
 - light code-level requirement tags in selected representative tests
 
-See: `docs/traceability-pack/`
-
 Selected tests also use a small `utils/traceability.py` helper so requirement IDs can be reflected in code and Allure output without over-engineering the project.
+
+See: `docs/traceability-pack/`
 
 ---
 
@@ -546,20 +547,15 @@ Selected tests also use a small `utils/traceability.py` helper so requirement ID
 
 This repository is intended to show practical, honest capability in modern QA tooling without pretending to be an advanced automation specialist.
 
-It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** who is adding:
+It supports my positioning as a **Senior Manual QA / Workstream Test Lead / assurance-led QA professional** who brings value through:
 
-- Python
-- Playwright
-- pytest
-- API coverage
-- SQL/data/report validation
-- CI awareness
-- maintainable test structure
-- stakeholder-friendly evidence presentation
-- traceability thinking linking requirements, tests and evidence
+- hands-on QA execution where it matters
+- test assurance and release confidence thinking
+- stakeholder reporting and quality visibility
+- risk-based coverage decisions
+- data and reporting validation, not just browser checks
+- maintainable structure over automation for automation’s sake
 - AI-assisted workflow support with human review and control
-
-in a realistic and commercially grounded way.
 
 ---
 
@@ -567,7 +563,7 @@ in a realistic and commercially grounded way.
 
 A simple and honest way to describe this portfolio is:
 
-> I built this project to demonstrate practical QA capability using Python, Playwright and pytest in a way that reflects my real background. It shows UI, API and SQL-backed data/report validation coverage, maintainable structure, CI execution, failure evidence, Allure reporting, and an AI-assisted QA workflow pack that demonstrates how I would use Generative AI as a support tool rather than a substitute for testing judgement.
+> I built this project to demonstrate practical QA capability using Python, Playwright and pytest in a way that reflects my real background. It shows UI, API and SQL-backed data/report validation coverage, maintainable structure, CI execution, failure evidence, Allure reporting, stakeholder-facing assurance artefacts, traceability from requirements to evidence, and an AI-assisted QA workflow pack that demonstrates how I would use Generative AI as a support tool rather than a substitute for testing judgement.
 
 It also supports conversations around:
 

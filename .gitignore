@@ -41,5 +41,9 @@ playwright-report/
 blob-report/
 
 # Allure
-allure-results/
+allure-results/*
+!allure-results/categories.json
+!allure-results/environment.properties
+!allure-results/executor.json
+
 allure-report/
