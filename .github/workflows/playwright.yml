@@ -53,6 +53,7 @@ jobs:
           UI target=Sauce Demo
           API target=JSONPlaceholder
           Data validation=SQLite-backed reporting checks
+          BDD/Gherkin=Business-readable scenarios mapped to existing tests
           EOT
           cat > allure-results/executor.json <<'EOT'
           {
@@ -83,6 +84,12 @@ jobs:
               "matchedStatuses": ["failed"],
               "messageRegex": ".*(AssertionError|SQL|query|dashboard|export).*,?",
               "traceRegex": ".*tests/data/.*"
+            },
+            {
+              "name": "BDD / documentation mapping failures",
+              "matchedStatuses": ["failed"],
+              "messageRegex": ".*(AssertionError|Missing BDD feature file|Mapping is missing).*,?",
+              "traceRegex": ".*tests/docs/.*"
             }
           ]
           EOT

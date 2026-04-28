@@ -21,6 +21,7 @@ This summary should be read alongside:
 | UI login smoke and core access | Good for portfolio scope | RQ-UI-001, RQ-UI-002, RQ-UI-003 | Playwright execution evidence, Allure steps, failure screenshots when relevant |
 | API baseline behaviour | Good for portfolio scope | RQ-API-001, RQ-API-002, RQ-API-003, RQ-API-004 | HTTP status checks, body/content checks, attached JSON evidence |
 | Data and reporting assurance | Strongest area in the portfolio | RQ-DATA-001, RQ-DATA-002, RQ-DATA-003, RQ-DATA-004 | SQL query evidence, expected-vs-actual comparisons, dashboard output checks |
+| BDD / Gherkin communication | Useful business-readable support layer | RQ-UI-001, RQ-UI-002, RQ-UI-003, RQ-DATA-001, RQ-DATA-003, RQ-DATA-004 | Feature files mapped to current automated checks and evidence sources |
 | Broader non-functional coverage | Limited / intentionally light | Not fully modelled in current matrix | Not a current focus of this portfolio slice |
 
 ## Stakeholder interpretation
@@ -57,6 +58,12 @@ A stakeholder should still assume that the following are either partial or out o
 - security-focused validation
 - performance or load coverage
 - broader end-to-end integration dependencies
+
+## Why the BDD / Gherkin slice was added
+
+The BDD / Gherkin slice gives stakeholders a plain-English view of key behaviours before looking at implementation-level test files.
+
+It is useful because it connects acceptance criteria, requirement IDs and existing automated checks without adding a heavy BDD framework.
 
 ## Why the code-level tags were added
 

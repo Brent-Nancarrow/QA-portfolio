@@ -8,6 +8,7 @@ The aim is to demonstrate **traceability thinking**, not bureaucracy for its own
 
 - turning sample requirements into testable acceptance criteria
 - mapping requirements to existing UI, API and data/report validation tests
+- linking selected BDD/Gherkin scenarios back to requirements and existing checks
 - showing where evidence would come from during execution
 - making coverage and gaps visible to stakeholders
 - supporting release-readiness and assurance conversations with clearer coverage logic
@@ -48,6 +49,7 @@ This pack deliberately complements the existing:
 - hands-on UI, API and data validation tests
 - Allure execution evidence
 - stakeholder-facing assurance pack
+- BDD/Gherkin business-readable scenario slice
 - AI-assisted but human-led QA workflow pack
 
 Together, those pieces show not only how tests were written and run, but also how coverage can be explained and defended.

@@ -1,6 +1,6 @@
 # QA-portfolio
 
-A **commercially credible QA portfolio** demonstrating practical **UI, API, SQL/data and dashboard validation** built in **PyCharm** using **Python, Playwright, pytest, SQLite, Allure and GitHub Actions**.
+A **commercially credible QA portfolio** demonstrating practical **UI, API, SQL/data, dashboard validation, BDD/Gherkin scenario design and stakeholder assurance** built in **PyCharm** using **Python, Playwright, pytest, SQLite, Allure and GitHub Actions**.
 
 This repository is designed to show more than isolated browser checks. It demonstrates how I apply **hands-on testing, test assurance, risk-based thinking, stakeholder visibility and release-readiness judgement** in a practical way, while building confidence with modern tooling.
 
@@ -24,6 +24,7 @@ This project is meant to show that I can contribute value across more than one Q
 - **data / dashboard validation** rather than UI-only automation
 - **failure evidence and reviewability** through screenshots, trace, video and Allure attachments
 - **traceability thinking** linking requirements, tests and evidence
+- **business-readable BDD/Gherkin scenarios** that connect acceptance criteria to existing checks
 - **stakeholder-facing assurance outputs** rather than raw execution alone
 - **AI-assisted but human-controlled QA workflow** with review, judgement and validation kept human-led
 
@@ -37,7 +38,7 @@ That combination is closer to the real value I bring in delivery environments: *
 - **UI target:** Sauce Demo
 - **API target:** JSONPlaceholder
 - **Data target:** local SQLite dataset for reporting-style validation
-- **Test types shown:** UI, API, smoke, responsive/mobile, negative and data/report validation
+- **Test types shown:** UI, API, smoke, responsive/mobile, negative, data/report validation and BDD/Gherkin scenario design
 - **Evidence shown:** Playwright trace/video/screenshots plus Allure reporting
 - **Execution modes:** headed locally, headless in CI
 - **Portfolio goal:** demonstrate maintainable test design, assurance thinking, evidence capture and stakeholder-friendly QA communication
@@ -106,6 +107,7 @@ If you are reviewing this repository for interview or hiring purposes, these are
 - **`tests/data/`** → SQL-backed reporting and dashboard validation
 - **`docs/stakeholder-assurance-pack/`** → stakeholder-facing assurance artefacts
 - **`docs/traceability-pack/`** → requirement-to-test mapping and coverage visibility
+- **`docs/bdd-gherkin-slice/`** → business-readable BDD/Gherkin examples mapped to existing tests
 - **`docs/ai-assisted-qa-workflow/`** → practical AI-assisted QA workflow examples
 - **GitHub Actions + GitHub Pages** → CI execution evidence and published Allure report output
 
@@ -145,6 +147,7 @@ QA-portfolio/
 │   └── users.py
 ├── docs/
 │   ├── ai-assisted-qa-workflow/
+│   ├── bdd-gherkin-slice/
 │   ├── stakeholder-assurance-pack/
 │   └── traceability-pack/
 ├── pages/
@@ -153,6 +156,7 @@ QA-portfolio/
 ├── tests/
 │   ├── api/
 │   ├── data/
+│   ├── docs/
 │   └── ui/
 ├── utils/
 │   ├── allure_helpers.py
@@ -174,12 +178,14 @@ QA-portfolio/
 - **data/** contains reusable test data plus SQL/reporting seed and export files
 - **assets/reporting/** contains a simple stakeholder-facing dashboard mock
 - **docs/ai-assisted-qa-workflow/** contains the AI workflow pack showing how GenAI can support QA work in a controlled, review-led way
+- **docs/bdd-gherkin-slice/** contains business-readable Gherkin scenarios mapped to existing automated checks
 - **docs/stakeholder-assurance-pack/** contains stakeholder-facing release-readiness style artefacts
 - **docs/traceability-pack/** contains a lightweight requirement-to-test mapping pack
 - **config/** contains shared settings such as base URLs
 - **tests/ui/** contains Playwright-based UI tests
 - **tests/api/** contains API tests
 - **tests/data/** contains SQL/data/report validation tests
+- **tests/docs/** contains lightweight documentation quality checks, including the BDD/Gherkin slice check
 - **utils/** contains small reusable helper logic
 - **allure-results/** contains raw Allure execution output plus small tracked metadata files
 - **allure-report/** is a generated HTML report folder created locally or in CI and can also be published through GitHub Pages
@@ -353,6 +359,12 @@ pytest -m responsive -v
 pytest -m data -v
 ```
 
+### Run BDD / Gherkin documentation checks
+
+```bash
+pytest -m bdd -v
+```
+
 ### Run dashboard export validation directly
 
 ```bash
@@ -490,6 +502,37 @@ Allure improves the visibility of:
 - which environment and execution context produced the result
 
 That makes the project more useful for interview discussion because it shows not just test execution, but also **evidence, traceability, reviewability and stakeholder-friendly report access**.
+
+---
+
+## BDD / Gherkin slice
+
+This portfolio now includes a small **BDD / Gherkin slice** under `docs/bdd-gherkin-slice/`.
+
+It is designed to show how acceptance criteria and expected behaviour can be written in business-readable language and mapped back to existing automated checks.
+
+### What it includes
+
+- `features/login.feature` for login and access behaviour
+- `features/reporting-dashboard.feature` for reporting/dashboard assurance behaviour
+- `bdd-to-automation-mapping.md` linking Gherkin scenarios to current tests, requirement IDs and evidence sources
+- `tests/docs/test_bdd_gherkin_slice.py` to check the BDD artefacts remain present, structured and traceable
+
+### Why it matters
+
+The aim is not to turn this project into a heavy BDD automation framework.
+
+The aim is to show that I can connect:
+
+- requirement intent
+- acceptance criteria
+- test design
+- automation coverage
+- stakeholder-readable assurance
+
+That is commercially useful for Workstream Test Lead, Senior QA and assurance-led roles because it supports shared understanding, coverage conversations and release confidence.
+
+See: `docs/bdd-gherkin-slice/`
 
 ---
 

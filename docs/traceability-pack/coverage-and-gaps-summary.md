@@ -27,6 +27,12 @@ Current coverage demonstrates:
 - validation of exported dashboard/report content
 - validation of the dashboard mock UI against expected values
 
+### 4. BDD / acceptance criteria communication
+Current coverage demonstrates:
+- business-readable Gherkin scenarios for login and reporting/dashboard assurance
+- a mapping between Gherkin scenarios, requirement IDs and existing automated checks
+- lightweight validation that BDD artefacts remain present, structured and traceable
+
 ---
 
 ## What is intentionally only partially covered
@@ -55,8 +61,8 @@ Current coverage demonstrates:
 
 These are not weaknesses to hide. They are normal scope boundaries for a portfolio slice.
 
-### Gap 1 — Traceability is sample-based
-The current pack uses a deliberately small sample requirement set aligned to the existing portfolio.
+### Gap 1 — Traceability and BDD are sample-based
+The current pack uses a deliberately small sample requirement set and BDD/Gherkin slice aligned to the existing portfolio.
 
 That is appropriate for a portfolio, but in a real programme the matrix would usually be linked to:
 - user stories
